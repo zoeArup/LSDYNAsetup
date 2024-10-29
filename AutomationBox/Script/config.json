@@ -1,0 +1,35 @@
+
+{
+"caseToRun":"SandyRidge",
+
+"SandyRidge":{
+
+    "Topo":{
+        "xCoordMin": 829940,
+        "xCoordMax": 830080,
+        "yCoordMin": 842800,
+        "yCoordMax": 843080,
+        "gridResolution": 0.5
+
+        },
+
+    "LidNGate":{
+        "numberOfSources":2,
+        "VolumeSource" : [230,300],
+        "boxSize": [[12,8],[15,10]],
+        "SourceCentreCoords" : [[830000,842900],[829980,842900]],
+        "ALESoildHeight":0.5
+        },
+
+    "SoilParameters":{
+        "BasalFrictionAngle":34,
+        "InternalFrictionAngle" :34,
+        "cohesion":1,
+        "DV2":0.02 
+    },
+
+    "OutputConfig":{
+
+    }
+    }
+}
