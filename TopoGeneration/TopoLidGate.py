@@ -30,7 +30,7 @@ OPTION3: Overlay Custom Topo on HKSARTopoOverlay topo: HKSARTopoOverlay=True; Cu
 '''
 HKSARTopo=True ; OverlayCriteria='low' #  Overlay criteria to keep the lowest Z topo {'low','high',}
 # CUSTOM_TOPO=True; CustomDIR=r'c:\Users\zoe.chan\Desktop\Zoe\SandyRidge\Model\Data\TestData'
-CUSTOM_TOPO=True; CustomDIR=r'c:\Users\zoe.chan\Desktop\Zoe\SandyRidge\Model\Data'
+CUSTOM_TOPO=True; CustomDIR=os.path.join(os.path.dirname(os.getcwd()),"Data")
 
 SetZeroReference=True
 
@@ -107,15 +107,6 @@ def CountNAN(col):
     print(f"Number of NaN values in 'Column1': {nan_count}")
 
 def MergeTopo(dfBase, OverlayObjs, Criteria='low'):
-    
-    # def GetTopoNLid(x):
-    #     if x['min_z']==np.nan:
-    #         # x['min_z']=np.nan;x['Z']=np.nan
-    #         return [x['Z'],np.nan]
-    #     else:
-    #         if x["min_z"]<x['Z']:
-    #             return [x["min_z"],x['Z']+0.1]
-    #         else: return [x["Z"],x['Z']+0.1]
            
     df=dfBase.copy();df['Lid']=np.nan;df['SurfaceZ']=df['Z']+0.1
     
@@ -174,6 +165,8 @@ if __name__ == "__main__":
     
     groups=topo.groupby("Lid"); print('There is these many groups in compare topo folder',groups.ngroups)
     ooom.writeLSDynaKeyFile(topo, settingsObj)
+    topo[['X','Y','Z']].to_csv(os.path.join(os.path.dirname(os.getcwd()),'Data','Topography.xyz'), sep='\t', index=False, header=False)
+    
 
     end_time = time.time()
     print(f"Program runtime: {end_time-start_time} seconds")

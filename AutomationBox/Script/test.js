@@ -1,6 +1,8 @@
 var fullPath = GetCurrentDirectory();
-var jsonPath = fullPath+'\\config.json';
-// Message(jsonPath)
+// var jsonPath = fullPath+'\\config.json';
+var jsonPath = fullPath.split('\\Output')[0]+'\\Script\\config.json';
+
+Message(jsonPath)
 var settingFile = new File(jsonPath, File.READ)
 var data=JSON.parse(settingFile.ReadAll())
 settingFile.Close();

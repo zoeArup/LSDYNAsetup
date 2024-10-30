@@ -34,6 +34,7 @@ var LidNGate=data[caseToRun].LidNGate;
 var  volume = LidNGate.VolumeSource;
 const boxSize = LidNGate.boxSize;
 const centreCoords = LidNGate.SourceCentreCoords;
+var numberOfSources=LidNGate.numberOfSources;
 
 ////////////////////////////////////////////////////////////////////
 // SECONDARY SETTINGS
@@ -56,6 +57,7 @@ function getBoundingCoords(centreCoordsOneDim, boxSizeOneDim)
 
 	return coords
 }
+
 
 function getCurrentNumberOfNodes()
 {

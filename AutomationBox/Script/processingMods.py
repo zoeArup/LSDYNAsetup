@@ -33,38 +33,37 @@ class settings():
         
         if self.gridResolution > 1:
             self.gridResolution = int(self.gridResolution)
-            
-        self.outputFolder = "Output"
-        self.currentPath = os.path.dirname(os.getcwd()) 
-        self.parquetFile = os.path.join("Data", "HKSAR.parquet")
+        
+        self.directory = os.path.dirname(os.getcwd()) 
+        self.parquetFile = topo["parquetFilePath"] if topo["parquetFilePath"] else os.path.join("Data", "HKSAR.parquet") 
+        self.customTopo= topo["customTopoPath"]
         self.folderAdmin()
         
-    def folderAdmin(self):
-        def createFolder(settingsObj):
-            outputPath = os.path.join(settingsObj.currentPath, settingsObj.outputFolder)
-            if not os.path.exists(outputPath):
-                os.makedirs(outputPath)
-
-            return outputPath
-
-        def getFileCounter(settingsObj):
+    def CheckFolderElseCreate(self,folder):
+        if not os.path.isdir(folder): os.makedirs(folder)
+        return folder
+    
+    def getFileCounter(self, folder ,key):
             files = [
                 f
-                for f in os.listdir(settingsObj.outputPath)
-                if os.path.isfile(os.path.join(settingsObj.outputPath, f))
+                for f in os.listdir(folder)
+                if os.path.isfile(os.path.join(folder, f))
             ]
 
             fileCounter = 0
             for file in files:
-                if settingsObj.keyFileName in file:
+                if key in file:
                     # number = int(''.join([n for n in file if n.isdigit()]))
                     number = int(re.search(r"\d+", file).group())
                     if number > fileCounter:
                         fileCounter = number
-            return fileCounter
-
-        self.outputPath = createFolder(self)
-        self.fileCounter = getFileCounter(self) + 1
+            return fileCounter   
+        
+    def folderAdmin(self):
+        self.outputPath = self.CheckFolderElseCreate(os.path.join(self.directory,"Output" ))
+        self.DataPath = self.CheckFolderElseCreate(os.path.join(self.directory,"Data" ))
+        
+        self.fileCounter = self.getFileCounter(self.outputPath,self.keyFileName) + 1
         
     def verboseOutput(self):
         print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
@@ -83,7 +82,7 @@ def readJson():
 
 def processConfig():
     caseToRun,data=readJson()
-    print(caseToRun,data)
+    print(caseToRun,'------------------------')
     settingsObj = settings(caseToRun,data["Topo"])
     settingsObj.verboseOutput()
 
@@ -114,7 +113,7 @@ def getsortedDataframe(settingsObj):
 
         # Use the read_table function with the filters
         table = pq.read_table(
-            os.path.join(settingsObj.currentPath, settingsObj.parquetFile),
+            os.path.join(settingsObj.directory, settingsObj.parquetFile),
             filters=coordFilters,
         )
 

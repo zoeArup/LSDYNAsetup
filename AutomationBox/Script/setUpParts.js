@@ -174,14 +174,14 @@ function setUpSets()
 	setArray.push(new Set(m, 2, Set.PART));
 	setArray[0].Add(4);
 	setArray[0].Add(5);
-	
+	// aa is gate and lid so two part
 	for (var aa = 0; aa < 2; aa++)
 	{
 		setArray.push(new Set(m, aa + 3, Set.PART));
 		var partNumber = 11 + aa;
 		for (var bb = 0; bb < numberOfSources; bb++)
 		{
-			setArray[aa + 1].Add(partNumber + bb);
+			setArray[aa + 1].Add(partNumber + bb*2);
 		}
 
 	}
@@ -197,6 +197,7 @@ setUpCurves();
 setUpPrescribedMotion(numberOfSources);
 //setUpSPCs();
 setUpSets();
+
 
 function formatNumber(num,dp) {
     // Format the number to 5 decimal places
