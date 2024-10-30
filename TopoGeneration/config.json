@@ -1,0 +1,71 @@
+{
+"caseToRun":"SandyRidge",
+
+"SandyRidge":{
+
+    "Topo":{
+        "xCoordMin": 829940,
+        "xCoordMax": 830080,
+        "yCoordMin": 842800,
+        "yCoordMax": 843080,
+        "gridResolution": 0.5,
+        
+        "parquetFilePath":"",
+        "customTopoPath":""
+        },
+
+    "LidNGate":{
+        "numberOfSources":2,
+        "VolumeSource" : [230,300],
+        "boxSize": [[12,8],[15,10]],
+        "SourceCentreCoords" : [[830000,842900],[829980,842900]],
+        "ALESoildHeight":0.5
+        },
+
+    "SoilParameters":{
+        "BasalFrictionAngle":20,
+        "InternalFrictionAngle" :20,
+        "cohesion":1,
+        "DV2":0.02 
+    },
+
+    "OutputConfig":{
+        "TOPO": 1,
+        "customTopoPath":"",
+        "caseTitle":"SandyRidge",
+        "D3Plotsubfolder":"v2",
+
+        "Translate":[0,0],
+
+        "TimeStepOfOutput":2,
+        "SoilExtra":3,
+        "ALEmeshRotatedAroundXaxis":0,
+
+        "topoContourStepSize" : 10,
+        "flowContourStepSize" : 1 ,
+        "plotResolution":1,
+
+        "ZoomInWindow":[[829960,830020],[842880,842920]],
+        "OverallPlotTickerStepSize":[20,20],
+        "ZoomInPlotTickerStepSize":[20,20]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+    }
+    }
+}

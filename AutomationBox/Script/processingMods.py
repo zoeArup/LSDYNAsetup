@@ -75,7 +75,7 @@ class settings():
 
 # %%
 def readJson():
-    with open(os.path.join(os.path.dirname(os.getcwd()), 'Script','config.json'), 'r') as file:
+    with open(os.path.join(os.getcwd(),'config.json'), 'r') as file:
         data = json.load(file)
         caseToRun=data['caseToRun']
     return caseToRun,data[caseToRun]
